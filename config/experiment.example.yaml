@@ -1,0 +1,79 @@
+# Copy this structure into a local data/ or logs/ experiment directory.
+# Do not commit real names, face media, consent forms, or stable identifiers.
+schema_version: 1
+
+experiment:
+  experiment_id: exp-lowlight-001
+  run_id: run-normal-001
+  dataset_split: dev  # dev | test
+  purpose: pipeline_smoke  # pipeline_smoke | threshold_development | frozen_test
+  lighting_condition: normal  # normal | dim | backlight | near_black
+  input_variant: raw_rgb
+  # Declare every source that contributes to this run. Do not claim a modality
+  # merely because a device is installed; it must have a synchronized record.
+  modalities: [rgb]  # rgb | nir | thermal | tof | audio
+
+source:
+  path: data/experiments/exp-lowlight-001/run-normal-001.mp4
+  sha256: FILL_AFTER_CAPTURE
+  capture_session_id: session-001
+  duration_seconds: null
+  source_fps: null
+  mirrored_for_processing: true
+  # For multimodal runs, record each stream's local pseudonymous path and its
+  # clock offset from RGB. Raw media remains outside Git.
+  synchronized_streams: []
+
+camera:
+  camera_id: cam-01
+  model: FILL_DEVICE_MODEL
+  lens: FILL_IF_KNOWN
+  width: 1280
+  height: 720
+  requested_fps: 30
+  exposure_mode: auto
+  exposure: null
+  gain: null
+  ir_mode: off
+  installation_record: records/install-cam-01.md
+
+scene:
+  zone_definition: config/default.yaml
+  distance_m: null
+  pose: frontal
+  occlusion: none
+  motion: enter_stay_leave
+  people_count: 1
+  approximate_lux: null
+  lux_method: not_measured
+  lux_measurement_position: null
+
+participants:
+  # Use project-local pseudonyms only. Keep consent forms outside the repository.
+  registered_subject_ids: [person-a]
+  unknown_subject_ids: []
+  consent_record_ids: [consent-001]
+  enrollment_session_ids: [enroll-session-001]
+  test_session_ids: [session-001]
+
+annotations:
+  observations_csv: data/experiments/exp-lowlight-001/observations.csv
+  event_truth_csv: data/experiments/exp-lowlight-001/event_truth.csv
+  detection_iou_threshold: 0.5
+  annotation_protocol_version: draft-01
+  reviewer: FILL_REVIEWER_ID
+
+software:
+  git_revision: FILL_AT_RUN_TIME
+  config_path: config/default.yaml
+  config_sha256: FILL_AT_RUN_TIME
+  yunet_sha256: FILL_AT_RUN_TIME
+  sface_sha256: FILL_AT_RUN_TIME
+  threshold_version: baseline-unfrozen
+
+retention:
+  authorized_use: course_project_validation
+  delete_by: 2026-09-30
+  deletion_record_id: deletion-pending-001
+  raw_video_policy: local_restricted
+  notes: Replace the date and policy with the approved project record.

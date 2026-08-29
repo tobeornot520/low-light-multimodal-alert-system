@@ -1,0 +1,54 @@
+camera:
+  index: 0
+  backend: auto
+  width: 1280
+  height: 720
+  fps: 30
+  probe_max_index: 5
+  read_failure_limit: 10
+
+preview:
+  window_name: Low-light Alert Camera
+  mirror: true
+  show_fps: true
+
+detection:
+  score_threshold: 0.9
+  nms_threshold: 0.3
+  top_k: 5000
+
+quality:
+  min_face_size: 80
+  min_sharpness: 60.0
+  min_brightness: 35.0
+  max_brightness: 225.0
+  max_yaw_ratio: 0.35
+  min_nose_position: 0.25
+  max_nose_position: 0.80
+
+enrollment:
+  templates_dir: data/templates
+  target_count: 20
+  capture_interval_seconds: 0.6
+  duplicate_similarity_threshold: 0.995
+
+recognition:
+  # These are baseline values. Calibrate them with project-specific data.
+  accept_threshold: 0.363
+  reject_threshold: 0.300
+  min_margin: 0.020
+
+events:
+  log_path: logs/events.jsonl
+  confirm_frames: 3
+  max_missing_frames: 5
+  lost_tolerance_seconds: 1.0
+  dwell_seconds: 2.0
+  cooldown_seconds: 10.0
+  association_iou_threshold: 0.20
+  # Coordinates are normalized to the camera frame: [x, y] in [0, 1].
+  zones: []
+
+models:
+  yunet: models/face_detection_yunet_2023mar.onnx
+  sface: models/face_recognition_sface_2021dec.onnx

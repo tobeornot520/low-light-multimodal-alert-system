@@ -1,0 +1,24 @@
+# Python environments and caches
+.venv*/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+build/
+dist/
+
+# Local configuration and credentials
+.env
+
+# Runtime data containing captures or biometric samples
+data/
+captures/
+logs/
+
+# Downloaded model binaries
+models/*.onnx
+
+# Accidental terminal-output files
+/h origin master
+/tore --staged README.md

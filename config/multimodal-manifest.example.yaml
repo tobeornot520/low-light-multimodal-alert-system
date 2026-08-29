@@ -1,0 +1,81 @@
+# Copy into a Git-ignored data/experiments/<experiment_id>/manifest.yaml.
+# This is a protocol example, not real data. Keep consent records and raw media
+# outside the repository.
+schema_version: 1
+
+experiment:
+  experiment_id: exp-multimodal-001
+  run_id: run-near-black-001
+  dataset_split: dev
+  purpose: threshold_development
+  lighting_condition: near_black
+  input_variant: rgb_nir_thermal
+  modalities: [rgb, nir, thermal]
+
+source:
+  path: data/experiments/exp-multimodal-001/sources/rgb/run-near-black-001.mp4
+  sha256: FILL_AFTER_CAPTURE
+  capture_session_id: test-session-003
+  duration_seconds: null
+  source_fps: 30
+  mirrored_for_processing: false
+  synchronized_streams:
+    - modality: nir
+      path: data/experiments/exp-multimodal-001/sources/nir/run-near-black-001.mp4
+      clock_offset_ms: 0
+    - modality: thermal
+      path: data/experiments/exp-multimodal-001/sources/thermal/run-near-black-001.mp4
+      clock_offset_ms: 0
+
+camera:
+  camera_id: rig-01-rgb
+  model: FILL_DEVICE_MODEL
+  lens: FILL_IF_KNOWN
+  width: 1280
+  height: 720
+  requested_fps: 30
+  exposure_mode: manual
+  exposure: null
+  gain: null
+  ir_mode: on
+  installation_record: records/install-rig-01.md
+
+scene:
+  zone_definition: config/default.yaml
+  distance_m: 2.0
+  pose: frontal
+  occlusion: none
+  motion: enter_stay_leave
+  people_count: 1
+  approximate_lux: 0
+  lux_method: calibrated_meter
+  lux_measurement_position: face_plane
+
+participants:
+  registered_subject_ids: [person-a]
+  unknown_subject_ids: [unknown-a]
+  consent_record_ids: [consent-001, consent-002]
+  enrollment_session_ids: [enroll-session-001]
+  test_session_ids: [test-session-003]
+
+annotations:
+  observations_csv: data/experiments/exp-multimodal-001/observations.csv
+  event_truth_csv: data/experiments/exp-multimodal-001/event_truth.csv
+  detection_iou_threshold: 0.5
+  annotation_protocol_version: draft-02
+  reviewer: reviewer-a
+
+software:
+  git_revision: FILL_AT_RUN_TIME
+  config_path: config/default.yaml
+  config_sha256: FILL_AT_RUN_TIME
+  yunet_sha256: FILL_AT_RUN_TIME
+  sface_sha256: FILL_AT_RUN_TIME
+  threshold_version: dev-unfrozen
+
+retention:
+  authorized_use: course_project_validation
+  delete_by: 2026-10-31
+  deletion_record_id: deletion-pending-001
+  raw_video_policy: local_restricted
+  notes: Record the approved retention decision before collection.

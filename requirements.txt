@@ -1,0 +1,9 @@
+# Core runtime dependencies for the first CPU-based prototype.
+numpy>=2.0,<2.3
+opencv-contrib-python>=4.11,<5
+onnxruntime>=1.22,<2
+paho-mqtt>=2.1,<3
+requests>=2.32,<3
+python-dotenv>=1.1,<2
+PyYAML>=6,<7
+Pillow>=11,<13
